@@ -1,4 +1,5 @@
 import { FactsContainer } from './components/FactsContainer/FactsContainer'
+import './Style/GlobalStyle.css'
 
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
 
   return (
     <>
-    <FactsContainer/>
+      <div className="App"> 
+        <FactsContainer/>
+      </div>
     </>
   );
 }

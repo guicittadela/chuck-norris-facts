@@ -8,7 +8,7 @@ export const Facts = ({value}) =>{
 
     return(
     <>
-        <Card sx={{ maxWidth: 500, height: 200 }}>
+        <Card sx={{ maxWidth: 500, minHeight: 150, minWidth: 500 }}>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
                     {value}
