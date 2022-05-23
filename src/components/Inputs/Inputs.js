@@ -48,22 +48,22 @@ export const Inputs = () =>{
             >
             <TextField onChange={changeTerm} id="standard-basic" label="Search" variant="standard" />
         </Box>
-            <FormControl variant="standard" sx={{ m: 1, minWidth: '25ch' }}>
-                <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
-                <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={category}
-                    onChange={changeCategory}
-                    label="category"
-                    >
-                    <MenuItem value="">
-                        <em>any</em>
-                    </MenuItem>
-                        {listCategory.map((category)=> <MenuItem value={category}><em>{category}</em></MenuItem>)}
-                </Select>
-            <Buttons term='teste termo' category='teste category'/>
-            </FormControl>
+        <FormControl variant="standard" sx={{ m: 1, minWidth: '25ch' }}>
+            <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
+            <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={category}
+                onChange={changeCategory}
+                label="category"
+                >
+                <MenuItem value="">
+                    <em>any</em>
+                </MenuItem>
+                    {listCategory.map((category)=> <MenuItem value={category}><em>{category}</em></MenuItem>)}
+            </Select>
+        <Buttons term={term} category={category}/>
+        </FormControl>
         </div>
 
 
