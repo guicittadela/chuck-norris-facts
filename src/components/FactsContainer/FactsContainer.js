@@ -19,11 +19,11 @@ export const FactsContainer = () =>{
 
     useEffect(()=>{API('random').then(response => {setJoke(response.value)})},[]) 
     const changeCategory = (event) => {
-      setCategory(event.target.value)
+        setCategory(event.target.value)
     }
 
     const changeTerm = (event) => {
-      setTerm(event.target.value)
+        setTerm(event.target.value)
     }
 
 
@@ -75,9 +75,9 @@ export const FactsContainer = () =>{
             })()
         }
     
-      }
-      if(listCategory === null){
-          return (
+        }
+        if(listCategory === null){
+            return (
         <>
         <div style={{display: 'flex', width: 500, flexDirection: 'column'}}>
             <Box sx={{ width: '100%' }}>
@@ -85,8 +85,8 @@ export const FactsContainer = () =>{
             </Box>
         </div>
         </>
-          )
-      }
+            )
+        }
     return(
         <>
         <div style={{display: 'flex', maxWidth: 500, flexDirection: 'column'}}>
