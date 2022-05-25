@@ -89,7 +89,7 @@ export const FactsContainer = () =>{
       }
     return(
         <>
-        <div style={{display: 'flex', MaxWidth: 500, flexDirection: 'column', border: 'solid 1px black'}}>
+        <div style={{display: 'flex', maxWidth: 500, flexDirection: 'column'}}>
             <div style={{display: 'flex', justifyContent: 'space-between', width: 500}}>
             <Box
                 component="form"
