@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 import { API } from '../../Services/API'
 import Button from '@mui/material/Button'
 import { Facts } from '../Facts/Facts'
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 export const FactsContainer = () =>{
@@ -16,7 +17,7 @@ export const FactsContainer = () =>{
     const [term, setTerm] = useState('')
     const [listCategory, setListCategory] = useState(null)
 
-
+    useEffect(()=>{API('random').then(response => {setJoke(response.value)})},[]) 
     const changeCategory = (event) => {
       setCategory(event.target.value)
     }
@@ -35,7 +36,7 @@ export const FactsContainer = () =>{
 
     const handleClick = (searchClick, categoryClick) => {
         {   
-            setJoke('Searching...')
+
             let url = BuildUrl(categoryClick, searchClick);
             if(url === "random") {
                 API(url).then(result => {
@@ -47,29 +48,28 @@ export const FactsContainer = () =>{
                 API(url).then(result => {
                     setJoke(result.value)
                 })
-                return
+                return 
             }
             (async () => {
                 const jokeObject = await API(url)
                 let jokes = []
                 jokeObject.result.map((object)=>{
-                    {   
+                    {  
                         if(categoryClick !== ''){
                             if(object.categories.length > 0 && object.categories[0] === categoryClick){
                                 jokes.push(object.value)
                         }
-    
                     }else{
                         jokes.push(object.value)
+                    } 
                     }
-                    
-                    }
-        
                 })
                 if(jokes.length > 0){
                     setJoke(jokes[Math.floor(Math.random() * jokes.length)])
+
                 }else{
                     setJoke('No jokes found with this term/category!')
+
                 }
     
             })()
@@ -77,12 +77,19 @@ export const FactsContainer = () =>{
     
       }
       if(listCategory === null){
-          return <div>Loading...</div>
+          return (
+        <>
+        <div style={{display: 'flex', width: 500, flexDirection: 'column'}}>
+            <Box sx={{ width: '100%' }}>
+                <LinearProgress color='inherit' />
+            </Box>
+        </div>
+        </>
+          )
       }
     return(
         <>
-        <div style={{display: 'flex', width: 500, flexDirection: 'column'}}>
-
+        <div style={{display: 'flex', MaxWidth: 500, flexDirection: 'column', border: 'solid 1px black'}}>
             <div style={{display: 'flex', justifyContent: 'space-between', width: 500}}>
             <Box
                 component="form"
