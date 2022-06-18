@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 
-export const Facts = ({value, loading}) =>{
+export const Facts = ({value}) =>{
     
     return(
     <>
