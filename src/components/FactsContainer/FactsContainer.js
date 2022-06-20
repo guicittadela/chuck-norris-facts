@@ -16,7 +16,7 @@ export const FactsContainer = () =>{
     const [category, setCategory] = useState('')
     const [term, setTerm] = useState('')
     const [listCategory, setListCategory] = useState(null)
-
+    
     useEffect(()=>{API('random').then(response => {setJoke(response.value)})},[]) 
     const changeCategory = (event) => {
         setCategory(event.target.value)
@@ -36,7 +36,7 @@ export const FactsContainer = () =>{
 
     const handleClick = (searchClick, categoryClick) => {
         {   
-
+            setJoke('Searching...')
             let url = BuildUrl(categoryClick, searchClick);
             if(url === "random") {
                 API(url).then(result => {
@@ -92,19 +92,16 @@ export const FactsContainer = () =>{
             <Box
                 component="form"
                 sx={{
-                    width:500,
+                    width: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-
+                    border: '1px solid #e0e0e0',
+                    textAlign: 'center',
                 }}
                 noValidate
                 autoComplete="off"
                 >
-                <Box sx={{ 
-                            width: '100%', 
-                            display: 'flex', 
-                            justifyContent: 'space-between', 
-                            p:1 }}>
+                <Box sx={{ justifyContent: 'space-around',p:4 }}>
                     <TextField onChange={changeTerm} style={{fontWeight: 'lighter'}} id="standard-basic" label="Search" variant="standard" />
                     <FormControl variant="standard" sx={{ minWidth: '25ch'}}>
                         <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
@@ -121,17 +118,17 @@ export const FactsContainer = () =>{
                                 {listCategory.map((category)=> <MenuItem value={category}><em>{category}</em></MenuItem>)}
                         </Select>
                     </FormControl>
+                    <Facts value={joke}/>
+                    <Button 
+                    sx={{width: 250, height: 50, marginTop:16}} 
+                    variant="contained" 
+                    color="success" 
+                    onClick={()=>{
+                        handleClick(term, category)
+                    }}>
+                        Get a new random fact!
+                    </Button>
                 </Box>
-                <Facts value={joke}/>
-                <Button 
-                style={{width: 250, height: 50, marginTop:16, marginLeft: '25%'}} 
-                variant="contained" 
-                color="success" 
-                onClick={()=>{
-                    handleClick(term, category)
-                }}>
-                    Get a new random fact!
-                </Button>
             </Box>
 
 
