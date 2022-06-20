@@ -95,29 +95,30 @@ export const FactsContainer = () =>{
                     width: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    border: '1px solid #e0e0e0',
                     textAlign: 'center',
                 }}
                 noValidate
                 autoComplete="off"
                 >
-                <Box sx={{ justifyContent: 'space-around',p:4 }}>
-                    <TextField onChange={changeTerm} style={{fontWeight: 'lighter'}} id="standard-basic" label="Search" variant="standard" />
-                    <FormControl variant="standard" sx={{ minWidth: '25ch'}}>
-                        <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            value={category}
-                            onChange={changeCategory}
-                            label="category"
-                            >
-                            <MenuItem value="">
-                                <em>any</em>
-                            </MenuItem>
-                                {listCategory.map((category)=> <MenuItem value={category}><em>{category}</em></MenuItem>)}
-                        </Select>
-                    </FormControl>
+                <Box sx={{p:4}}>
+                    <Box className='search-form' sx={{display: 'flex', justifyContent: 'space-between', m:2}}>
+                        <TextField onChange={changeTerm} style={{fontWeight: 'lighter'}} id="standard-basic" label="Search" variant="standard" />
+                        <FormControl variant="standard" sx={{ minWidth: '25ch'}}>
+                            <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={category}
+                                onChange={changeCategory}
+                                label="category"
+                                >
+                                <MenuItem value="">
+                                    <em>any</em>
+                                </MenuItem>
+                                    {listCategory.map((category)=> <MenuItem value={category}><em>{category}</em></MenuItem>)}
+                            </Select>
+                        </FormControl>
+                    </Box>
                     <Facts value={joke}/>
                     <Button 
                     sx={{width: 250, height: 50, marginTop:16}} 
