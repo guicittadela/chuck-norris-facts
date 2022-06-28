@@ -4,13 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 
-export const Facts = ({value, search}) =>{
+export const Facts = ({value}) =>{
     
     return(
     <>
         <Card sx={{ maxWidth: '100%', height: 200 }} >
             <CardContent>
-                <Typography style={{textAlign: 'center'}} variant="body2" color="text.secondary">
+                <Typography style={{textAlign: 'center'}} variant="body2" color="text.primary">
                     {value}
                 </Typography>
             </CardContent>

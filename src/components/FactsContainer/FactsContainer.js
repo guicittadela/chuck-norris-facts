@@ -42,17 +42,23 @@ export const FactsContainer = () =>{
                 API(url).then(result => {
                     setJoke(result.value)
                 })
+                ClearImput('','any')
+
                 return
             };
             if(categoryClick !== '' && searchClick === ''){
                 API(url).then(result => {
+                    console.log(result)
                     setJoke(result.value)
                 })
+                ClearImput('','any')
+
                 return 
             }
             (async () => {
                 const jokeObject = await API(url)
                 let jokes = []
+                console.log(jokeObject)
                 jokeObject.result.map((object)=>{
                     {  
                         if(categoryClick !== ''){
@@ -66,13 +72,19 @@ export const FactsContainer = () =>{
                 })
                 if(jokes.length > 0){
                     setJoke(jokes[Math.floor(Math.random() * jokes.length)])
-
+                    ClearImput('','any')
                 }else{
                     setJoke('No jokes found with this term/category!')
+                    ClearImput('','any')
 
                 }
     
             })()
+        }
+        const ClearImput = (term, category) => {
+            setTerm(term)
+            setCategory(category)
+        
         }
     
         }
@@ -95,14 +107,13 @@ export const FactsContainer = () =>{
                     width: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    textAlign: 'center',
                 }}
                 noValidate
                 autoComplete="off"
                 >
                 <Box sx={{p:4}}>
                     <Box className='search-form' sx={{display: 'flex', justifyContent: 'space-between', m:2}}>
-                        <TextField onChange={changeTerm} style={{fontWeight: 'lighter'}} id="standard-basic" label="Search" variant="standard" />
+                        <TextField onChange={changeTerm}  id="standard-basic" label="Search" variant="standard" />
                         <FormControl variant="standard" sx={{ minWidth: '25ch'}}>
                             <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
                             <Select
@@ -119,16 +130,20 @@ export const FactsContainer = () =>{
                             </Select>
                         </FormControl>
                     </Box>
-                    <Facts value={joke}/>
-                    <Button 
-                    sx={{width: 250, height: 50, marginTop:16}} 
-                    variant="contained" 
-                    color="success" 
-                    onClick={()=>{
-                        handleClick(term, category)
-                    }}>
-                        Get a new random fact!
-                    </Button>
+
+                    <Facts  value={joke}/>
+
+                    <Box sx={{textAlign: 'center', marginTop: 5}}>
+                        <Button 
+                        sx={{width: 250, height: 50}} 
+                        variant="contained" 
+                        color="success" 
+                        onClick={()=>{
+                            handleClick(term, category)
+                        }}>
+                            Get a new random fact!
+                        </Button>
+                    </Box>
                 </Box>
             </Box>
 
@@ -147,3 +162,4 @@ const BuildUrl = (category, search) => {
     }
     return url
 }
+
